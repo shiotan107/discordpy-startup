@@ -7,10 +7,15 @@ token = os.environ['DISCORD_BOT_TOKEN']
 
 
 @bot.event
-async def on_command_error(ctx, error):
-    await ctx.send(str(error))
-
-
+async def on_message(message):
+    try:
+        if message.auther.bot:
+            return
+        await bot.process_commands(message)
+    except Exception:
+        await massege.channel.send(f'```\n{traceback.format_exc()}
+        
+        
 @bot.command()
 async def ohayo(ctx):
     await ctx.send('ohayo')
